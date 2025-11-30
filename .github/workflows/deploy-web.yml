@@ -1,0 +1,308 @@
+name: Deploy Web Demo
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Create demo files
+      run: |
+        mkdir -p demo
+        cat > demo/index.html << 'HTML'
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>轻语 - 国风疗愈App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .phone {
+            width: 375px;
+            height: 812px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+        .app-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .app-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .search {
+            margin: 20px;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #f5f5f7;
+            font-size: 16px;
+            width: calc(100% - 40px);
+        }
+        .scenes {
+            display: flex;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            gap: 12px;
+            overflow-x: auto;
+        }
+        .scene-btn {
+            flex-shrink: 0;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .scene-btn.active {
+            background: #007AFF;
+            border-color: #007AFF;
+            color: white;
+        }
+        .track {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .track:hover {
+            background: #f8f8fa;
+        }
+        .track-cover {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ddd 25%, #eee 50%, #ddd 75%);
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .track-info {
+            flex: 1;
+        }
+        .track-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .track-artist {
+            font-size: 14px;
+            color: #8e8e93;
+        }
+        .track-duration {
+            font-size: 12px;
+            color: #8e8e93;
+        }
+        .player {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 375px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+        .player.active {
+            display: block;
+        }
+        .vinyl {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #222 25%, #333 50%, #222 75%);
+            margin: 0 auto 20px;
+            position: relative;
+            animation: spin 3s linear infinite;
+        }
+        .vinyl::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #e74c3c;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: #007AFF;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff3b30;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        @media (max-width: 414px) {
+            .phone {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone">
+        <div class="badge">演示版本</div>
+
+        <div class="header">
+            <h1 class="app-title">轻语</h1>
+            <p class="app-subtitle">国风疗愈 · 碎片时光</p>
+        </div>
+
+        <input type="text" class="search" placeholder="🔍 搜索曲目或艺术家">
+
+        <div class="scenes">
+            <button class="scene-btn active">🧘 禅意静心</button>
+            <button class="scene-btn">☀️ 日常解压</button>
+            <button class="scene-btn">🌙 睡前助眠</button>
+            <button class="scene-btn">💗 缓解焦虑</button>
+        </div>
+
+        <div class="track" onclick="showPlayer()">
+            <div class="track-cover">🎵</div>
+            <div class="track-info">
+                <div class="track-title">竹林清风</div>
+                <div class="track-artist">轻语</div>
+            </div>
+            <div class="track-duration">0:30</div>
+        </div>
+
+        <div class="track">
+            <div class="track-cover">🎵</div>
+            <div class="track-info">
+                <div class="track-title">山涧溪流</div>
+                <div class="track-artist">轻语</div>
+            </div>
+            <div class="track-duration">0:25</div>
+        </div>
+
+        <div class="track">
+            <div class="track-cover">🎵</div>
+            <div class="track-info">
+                <div class="track-title">古琴禅音</div>
+                <div class="track-artist">轻语</div>
+            </div>
+            <div class="track-duration">0:35</div>
+        </div>
+
+        <div class="track">
+            <div class="track-cover">🎵</div>
+            <div class="track-info">
+                <div class="track-title">晨露微光</div>
+                <div class="track-artist">轻语</div>
+            </div>
+            <div class="track-duration">0:20</div>
+        </div>
+
+        <div class="player" id="player">
+            <div class="vinyl"></div>
+            <div style="font-weight: 500; margin-bottom: 16px;">竹林清风</div>
+            <div style="font-size: 14px; color: #8e8e93; margin-bottom: 20px;">轻语</div>
+            <div class="controls">
+                <button class="control-btn">⏮️</button>
+                <button class="control-btn">⏸️</button>
+                <button class="control-btn">⏭️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPlayer() {
+            document.getElementById('player').classList.add('active');
+            // 添加振动反馈
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // 场景切换
+        document.querySelectorAll('.scene-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                if (navigator.vibrate) {
+                    navigator.vibrate(20);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+HTML
+
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: demo
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
