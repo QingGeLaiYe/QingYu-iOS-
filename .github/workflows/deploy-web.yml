@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -277,13 +282,11 @@ jobs:
     <script>
         function showPlayer() {
             document.getElementById('player').classList.add('active');
-            // 添加振动反馈
             if (navigator.vibrate) {
                 navigator.vibrate(50);
             }
         }
 
-        // 场景切换
         document.querySelectorAll('.scene-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
