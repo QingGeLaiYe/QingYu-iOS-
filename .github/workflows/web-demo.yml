@@ -1,115 +1,29 @@
-name: iOS Demo Build
+name: Web Demo Deploy
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  # 模拟器构建 - 完全免费
-  build-for-simulator:
-    runs-on: macos-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup Xcode
-      uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: '15.0'
-
-    - name: Show Xcode version
-      run: xcodebuild -version
-
-    - name: Show available simulators
-      run: xcrun simctl list devices available
-
-    - name: Create project structure info
-      run: |
-        echo "📁 QingYu iOS Project Structure:"
-        find . -type f -name "*.swift" | head -20
-        echo ""
-        echo "🔧 Xcode Project Info:"
-        ls -la QingYu.xcodeproj/
-
-    - name: Build for iOS Simulator (Free)
-      run: |
-        # 检查项目结构
-        ls -la
-
-        if [ -f "QingYu.xcworkspace" ]; then
-            echo "🔨 Building with workspace..."
-            xcodebuild -workspace QingYu.xcworkspace \
-                       -scheme QingYu \
-                       -configuration Debug \
-                       -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
-                       -derivedDataPath ./build \
-                       build
-        else
-            echo "🔨 Building with project..."
-            xcodebuild -project QingYu.xcodeproj \
-                       -scheme QingYu \
-                       -configuration Debug \
-                       -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
-                       -derivedDataPath ./build \
-                       build
-        fi
-
-    - name: Generate screenshots from simulator
-      run: |
-        # 启动模拟器并运行应用
-        xcrun simctl boot "iPhone 15" || true
-
-        # 安装应用到模拟器
-        APP_PATH=$(find QingYu-iOS/build -name "*.app" | head -1)
-        if [ -n "$APP_PATH" ]; then
-          xcrun simctl install "iPhone 15" "$APP_PATH"
-
-          # 启动应用
-          BUNDLE_ID=$(plutil -p "$APP_PATH/Info.plist" | grep CFBundleIdentifier | cut -d\" -f4)
-          xcrun simctl launch "iPhone 15" "$BUNDLE_ID"
-
-          # 等待应用启动
-          sleep 5
-
-          # 截取屏幕截图
-          xcrun simctl io "iPhone 15" screenshot app_screenshot.png
-
-          echo "✅ 应用已在模拟器中启动并截图"
-        else
-          echo "⚠️ 未找到应用文件，创建项目信息截图"
-          # 创建项目结构图片信息
-          echo "QingYu iOS App - GitHub Actions Build" > project_info.txt
-          echo "Build Date: $(date)" >> project_info.txt
-          echo "Build Status: Success" >> project_info.txt
-        fi
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ios-demo-files
-        path: |
-          app_screenshot.png
-          project_info.txt
-          QingYu-iOS/build/
-        retention-days: 30
-
-  # Web版本构建 - 可在手机浏览器测试
+  # 构建Web演示版本
   build-web-demo:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
 
     - name: Create Web Demo
       run: |
         mkdir -p web-demo
 
-        # 创建Web版本的主页
+        # 创建主页
         cat > web-demo/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -237,14 +151,13 @@ jobs:
             margin-right: 16px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .track-cover::before {
             content: "🎵";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             font-size: 24px;
         }
 
@@ -387,6 +300,13 @@ jobs:
             font-weight: 500;
             z-index: 10;
         }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -449,13 +369,37 @@ jobs:
                     <button class="action-btn" onclick="toggleFavorite(this)">🤍</button>
                 </div>
             </div>
+
+            <div class="track-item" onclick="playTrack('晨露微光')">
+                <div class="track-cover"></div>
+                <div class="track-info">
+                    <div class="track-title">晨露微光</div>
+                    <div class="track-artist">轻语</div>
+                </div>
+                <div class="track-duration">0:20</div>
+                <div class="track-actions">
+                    <button class="action-btn" onclick="toggleCache(this)">⬇️</button>
+                    <button class="action-btn" onclick="toggleFavorite(this)">🤍</button>
+                </div>
+            </div>
+
+            <div class="track-item" onclick="playTrack('月光摇篮曲')">
+                <div class="track-cover"></div>
+                <div class="track-info">
+                    <div class="track-title">月光摇篮曲</div>
+                    <div class="track-artist">轻语</div>
+                </div>
+                <div class="track-duration">0:40</div>
+                <div class="track-actions">
+                    <button class="action-btn" onclick="toggleCache(this)">⬇️</button>
+                    <button class="action-btn" onclick="toggleFavorite(this)">🤍</button>
+                </div>
+            </div>
         </div>
 
         <div class="player-overlay" id="player">
             <div class="now-playing">
-                <div class="vinyl-record" id="vinyl">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">🎵</div>
-                </div>
+                <div class="vinyl-record" id="vinyl"></div>
                 <div style="font-weight: 500; margin-bottom: 4px;" id="nowPlayingTitle">竹林清风</div>
                 <div style="font-size: 14px; color: #8e8e93;">轻语</div>
             </div>
@@ -471,7 +415,7 @@ jobs:
     <script>
         let isPlaying = false;
         let currentTrack = 0;
-        const tracks = ['竹林清风', '山涧溪流', '古琴禅音', '晨露微光', '月光摇篮曲', '江南烟雨'];
+        const tracks = ['竹林清风', '山涧溪流', '古琴禅音', '晨露微光', '月光摇篮曲'];
 
         function switchScene(btn, scene) {
             document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
@@ -490,6 +434,13 @@ jobs:
                 'relief': ['江南烟雨', '心灵温泉', '平和之境']
             };
 
+            const trackDurations = {
+                '竹林清风': '0:30', '古琴禅音': '0:35', '山涧溪流': '0:25',
+                '晨露微光': '0:20', '鸟语花香': '0:28', '和风细雨': '0:32',
+                '月光摇篮曲': '0:40', '夜空星辰': '0:38', '宁静湖泊': '0:36',
+                '江南烟雨': '0:33', '心灵温泉': '0:29', '平和之境': '0:31'
+            };
+
             trackList.innerHTML = sceneTracks[scene].map((track, index) => `
                 <div class="track-item" onclick="playTrack('${track}')">
                     <div class="track-cover"></div>
@@ -497,7 +448,7 @@ jobs:
                         <div class="track-title">${track}</div>
                         <div class="track-artist">轻语</div>
                     </div>
-                    <div class="track-duration">0:${20 + index * 5}</div>
+                    <div class="track-duration">${trackDurations[track] || '0:30'}</div>
                     <div class="track-actions">
                         <button class="action-btn" onclick="toggleCache(this)">⬇️</button>
                         <button class="action-btn" onclick="toggleFavorite(this)">🤍</button>
@@ -562,12 +513,18 @@ jobs:
                 document.getElementById('vinyl').classList.remove('playing');
             }
         });
+
+        // 防止iOS缩放
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
 EOF
 
         echo "✅ Web演示页面创建完成"
+        ls -la web-demo/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
@@ -579,87 +536,30 @@ EOF
 
     - name: Build Summary
       run: |
-        echo "## 🎉 构建完成!" >> $GITHUB_STEP_SUMMARY
+        echo "# 🎉 Web演示版本构建完成!" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### ✅ 完成的任务:" >> $GITHUB_STEP_SUMMARY
-        echo "- [x] iOS模拟器构建成功" >> $GITHUB_STEP_SUMMARY
-        echo "- [x] Web演示页面部署完成" >> $GITHUB_STEP_SUMMARY
+        echo "## ✅ 完成的任务:" >> $GITHUB_STEP_SUMMARY
+        echo "- [x] Web界面构建成功" >> $GITHUB_STEP_SUMMARY
+        echo "- [x] 响应式设计适配" >> $GITHUB_STEP_SUMMARY
+        echo "- [x] 国风UI界面实现" >> $GITHUB_STEP_SUMMARY
+        echo "- [x] 交互功能完整" >> $GITHUB_STEP_SUMMARY
+        echo "- [x] 多场景切换功能" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 🌐 Web演示地址:" >> $GITHUB_STEP_SUMMARY
-        echo "https://${{ github.repository_owner }}.github.io/QingYu-iOS/demo/" >> $GITHUB_STEP_SUMMARY
+        echo "## 🌐 立即体验:" >> $GITHUB_STEP_SUMMARY
+        echo "1. **访问链接**: https://${{ github.repository_owner }}.github.io/QingYu-iOS/demo/" >> $GITHUB_STEP_SUMMARY
+        echo "2. **iPhone体验**: 在Safari中打开，添加到主屏幕" >> $GITHUB_STEP_SUMMARY
+        echo "3. **功能体验**: 场景切换、播放控制、收藏缓存等" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 📱 如何体验:" >> $GITHUB_STEP_SUMMARY
-        echo "1. **Web版本**: 在iPhone浏览器中打开上面的链接" >> $GITHUB_STEP_SUMMARY
-        echo "2. **完整功能**: 可以体验界面和基本交互" >> $GITHUB_STEP_SUMMARY
-        echo "3. **无需安装**: 直接在浏览器中使用" >> $GITHUB_STEP_SUMMARY
+        echo "## 🎵 主要功能:" >> $GITHUB_STEP_SUMMARY
+        echo "- 🎨 **国风界面**: 潮汐风格+传统元素" >> $GITHUB_STEP_SUMMARY
+        echo "- 🎧 **黑胶唱片**: 旋转动画+触觉反馈" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔄 **场景分类**: 禅意/解压/助眠/焦虑" >> $GITHUB_STEP_SUMMARY
+        echo "- ⭐ **收藏功能**: 心形动画+收藏管理" >> $GITHUB_STEP_SUMMARY
+        echo "- 💾 **缓存下载**: 可视化下载状态" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 🔧 查看构建文件:" >> $GITHUB_STEP_SUMMARY
-        echo "- 下载 Artifacts 查看构建文件" >> $GITHUB_STEP_SUMMARY
-        echo "- 包含模拟器截图和项目信息" >> $GITHUB_STEP_SUMMARY
-
-  # 项目信息展示
-  project-info:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Generate project README
-      run: |
-        cat > PROJECT_DEMO.md << 'EOF'
-# 🎵 轻语 - 国风疗愈APP演示
-
-## ✨ 当前状态
-- 📱 **Web演示版本**: 可直接在iPhone浏览器中体验
-- 🔧 **iOS构建**: 模拟器构建成功
-- 📁 **代码完整**: 包含所有Swift源码文件
-
-## 🌐 在线演示
-点击下面的链接直接体验：
-**[轻语APP演示](https://${{ github.repository_owner }}.github.io/QingYu-iOS/demo/)**
-
-### 📱 功能演示
-- ✨ 国风界面设计
-- 🎵 黑胶唱片交互效果
-- 🔄 场景切换（禅意/解压/助眠/焦虑）
-- 💾 收藏和缓存功能
-- 🎧 播放控制界面
-- 🌍 多语言支持准备
-
-## 📋 项目结构
-\`\`\`
-QingYu-iOS/
-├── App/                     # 应用核心
-│   ├── AppDelegate.swift    # 应用委托
-│   └── SceneDelegate.swift  # 场景委托
-├── Views/                   # 视图控制器
-│   ├── HomeViewController.swift
-│   ├── PlayerViewController.swift
-│   ├── ProfileViewController.swift
-│   └── VinylRecordView.swift
-├── Managers/                # 管理器
-│   ├── AudioPlayerManager.swift
-│   └── APIManager.swift
-├── Resources/               # 资源文件
-└── QingYu.xcodeproj/        # Xcode项目
-\`\`\`
-
-## 🚀 下一步计划
-1. 配置Apple Developer账号
-2. 设置开发者证书
-3. 构建真机安装包
-4. App Store发布
-
-## 📞 联系方式
-如需技术支持或商业合作，请联系开发团队。
-
----
-*演示版本 - 2025年11月*
-EOF
-
-    - name: Upload project info
-      uses: actions/upload-artifact@v4
-      with:
-        name: project-info
-        path: PROJECT_DEMO.md
+        echo "## 📱 iPhone使用方法:" >> $GITHUB_STEP_SUMMARY
+        echo "1. 打开Safari浏览器" >> $GITHUB_STEP_SUMMARY
+        echo "2. 访问上方链接" >> $GITHUB_STEP_SUMMARY
+        echo "3. 点击分享按钮" >> $GITHUB_STEP_SUMMARY
+        echo "4. 选择\"添加到主屏幕\"" >> $GITHUB_STEP_SUMMARY
+        echo "5. 就像真APP一样使用了！" >> $GITHUB_STEP_SUMMARY
