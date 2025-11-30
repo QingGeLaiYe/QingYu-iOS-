@@ -1,0 +1,165 @@
+/*
+  Localizable.strings
+  QingYu
+
+  Created by QingYu Team on 2025-11-27.
+  Copyright © 2025 QingYu. All rights reserved.
+*/
+
+// MARK: - App General
+"app_name" = "QingYu";
+"qingyu_user" = "Utilisateur QingYu";
+"enjoy_healing_journey" = "Profitez de votre voyage de guérison";
+
+// MARK: - Navigation
+"back" = "Retour";
+"done" = "Terminé";
+"cancel" = "Annuler";
+"ok" = "OK";
+"save" = "Sauvegarder";
+
+// MARK: - Home Screen
+"subtitle_healing_sounds" = "Sons de guérison orientaux · Moments de pleine conscience";
+"search_placeholder" = "Rechercher des pistes, des scènes...";
+"no_results" = "Aucun résultat trouvé";
+"loading_tracks" = "Chargement de l'audio...";
+
+// MARK: - Scene Categories
+"zen_meditation" = "Méditation Zen";
+"daily_relax" = "Relaxation Quotidienne";
+"sleep_aid" = "Aide au Sommeil";
+"anxiety_relief" = "Soulagement de l'Anxiété";
+"uncategorized" = "Autre";
+
+// MARK: - Track Names
+"track_bamboo_forest" = "Forêt de Bambous";
+"track_mountain_stream" = "Ruisseau de Montagne";
+"track_morning_dew" = "Rosée du Matin";
+"track_moonlight_lullaby" = "Berceuse au Clair de Lune";
+"track_gentle_rain" = "Pluie Douce";
+"track_autumn_wind" = "Vent d'Automne";
+"track_spring_blossom" = "Fleur de Printemps";
+"track_snow_silence" = "Silence de Neige";
+
+// MARK: - Artist
+"artist_qingyu" = "Musique QingYu";
+
+// MARK: - Player Controls
+"play" = "Lecture";
+"pause" = "Pause";
+"next_track" = "Piste Suivante";
+"previous_track" = "Piste Précédente";
+"single_loop" = "Boucle Simple";
+"sequence_play" = "Séquence";
+"random_play" = "Aléatoire";
+
+// MARK: - Track Actions
+"add_to_favorites" = "Ajouter aux Favoris";
+"remove_from_favorites" = "Retirer des Favoris";
+"cache_track" = "Mettre en Cache la Piste";
+"remove_cache" = "Supprimer le Cache";
+"share" = "Partager";
+
+// MARK: - Profile / Settings
+"profile_title" = "Profil";
+"my_favorites" = "Mes Favoris";
+"settings" = "Paramètres";
+"about" = "À Propos";
+
+// MARK: - Settings Items
+"background_playback" = "Lecture en Arrière-plan";
+"background_playback_desc" = "Continuer la lecture lorsque l'application est en arrière-plan";
+"lock_screen_control" = "Contrôle Écran Verrouillé";
+"lock_screen_control_desc" = "Contrôler l'audio depuis l'écran verrouillé";
+"default_playback_mode" = "Mode de Lecture par Défaut";
+"default_playback_mode_desc" = "Choisissez votre mode de lecture préféré";
+"auto_cache" = "Cache Automatique";
+"auto_cache_desc" = "Mettre automatiquement en cache les pistes fréquemment utilisées";
+
+// MARK: - Cache Management
+"cache_management" = "Gestion du Cache";
+"cache_size" = "Taille du Cache";
+"clear_cache" = "Vider le Cache";
+"clear_cache_confirm" = "Êtes-vous sûr de vouloir supprimer tout l'audio mis en cache ?";
+"cache_cleared" = "Cache vidé";
+
+// MARK: - About Section
+"version" = "Version";
+"version_info" = "QingYu v1.0.0 (1)";
+"privacy_policy" = "Politique de Confidentialité";
+"privacy_policy_desc" = "Voir notre politique de confidentialité";
+"user_agreement" = "Accord Utilisateur";
+"user_agreement_desc" = "Voir les termes et conditions utilisateur";
+"rate_app" = "Noter l'App";
+"rate_app_desc" = "Noter QingYu sur l'App Store";
+"share_app" = "Partager l'App";
+"share_app_desc" = "Partager QingYu avec des amis";
+"share_app_message" = "J'ai trouvé une application de guérison orientale fantastique 'QingYu' et j'ai pensé que cela pourrait vous plaire !";
+
+// MARK: - Empty States
+"no_favorites_yet" = "Pas encore de favoris";
+"no_cached_tracks" = "Pas de pistes en cache";
+"first_time_user" = "Première Utilisation de QingYu";
+"first_time_message" = "Sélectionnez une scène pour commencer votre voyage de guérison";
+
+// MARK: - Status Messages
+"loading" = "Chargement...";
+"downloading" = "Téléchargement...";
+"downloading_progress" = "Téléchargement %d%%";
+"download_complete" = "Téléchargement Terminé";
+"download_failed" = "Échec du Téléchargement";
+"cache_complete" = "Cache Terminé";
+"cache_removed" = "Cache Supprimé";
+
+// MARK: - Error Messages
+"error_network" = "Erreur de connexion réseau";
+"error_playback" = "Échec de la lecture";
+"error_cache" = "Échec du cache";
+"error_download" = "Échec du téléchargement";
+"try_again" = "Réessayer";
+
+// MARK: - Notifications
+"notification_new_track" = "Nouvelle Piste Disponible";
+"notification_download_complete" = "Téléchargement Terminé";
+"notification_playback_error" = "Erreur de Lecture";
+
+// MARK: - Accessibility
+"accessibility_play_button" = "Bouton Lecture";
+"accessibility_pause_button" = "Bouton Pause";
+"accessibility_next_track" = "Piste Suivante";
+"accessibility_previous_track" = "Piste Précédente";
+"accessibility_favorite_button" = "Bouton Favoris";
+"accessibility_cache_button" = "Bouton Cache";
+"accessibility_vinyl_record" = "Disque Vinyle";
+"accessibility_progress_slider" = "Curseur de Progrès";
+
+// MARK: - Time Formats
+"seconds_short" = "s";
+"minutes_short" = "min";
+"hours_short" = "h";
+"remaining_time" = "%@ restant";
+"elapsed_time" = "%@ joué";
+
+// MARK: - Quality Options
+"quality_standard" = "Qualité Standard";
+"quality_high" = "Haute Qualité";
+"quality_auto" = "Auto";
+"quality_wifi_only" = "Haute Qualité Uniquement en Wi-Fi";
+
+// MARK: - Scene Descriptions
+"zen_meditation_desc" = "Instruments traditionnels comme le Guqin et la Flûte de Bambous pour la méditation";
+"daily_relax_desc" = "Sons naturels avec instruments orientaux pour la relaxation quotidienne";
+"sleep_aid_desc" = "Audio oriental doux pour vous aider à vous endormir";
+"anxiety_relief_desc" = "Audio apaisant pour soulager le stress et l'anxiété";
+
+// MARK: - Feature Descriptions
+"feature_vinyl_experience" = "Expérience Vinyle";
+"feature_vinyl_desc" = "Expérience d'interaction authentique de disque vinyle";
+"feature_seamless_loop" = "Boucle Sans Couture";
+"feature_seamless_desc" = "Boucles audio parfaites de 10-40 secondes";
+"feature_multi_language" = "Multilingue";
+"feature_multi_language_desc" = "Support pour le Chinois, l'Anglais, l'Allemand, le Français";
+"feature_offline_cache" = "Cache Hors Ligne";
+"feature_offline_desc" = "Support pour le téléchargement et la lecture audio hors ligne";
+"feature_no_login" = "Aucune Inscription";
+"feature_no_login_desc" = "Accès instantané sans inscription ou connexion";

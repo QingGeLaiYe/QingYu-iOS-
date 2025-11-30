@@ -1,0 +1,165 @@
+/*
+  Localizable.strings
+  QingYu
+
+  Created by QingYu Team on 2025-11-27.
+  Copyright © 2025 QingYu. All rights reserved.
+*/
+
+// MARK: - App General
+"app_name" = "QingYu";
+"qingyu_user" = "QingYu User";
+"enjoy_healing_journey" = "Enjoy Your Healing Journey";
+
+// MARK: - Navigation
+"back" = "Back";
+"done" = "Done";
+"cancel" = "Cancel";
+"ok" = "OK";
+"save" = "Save";
+
+// MARK: - Home Screen
+"subtitle_healing_sounds" = "Oriental Healing Sounds · Mindful Moments";
+"search_placeholder" = "Search tracks, scenes...";
+"no_results" = "No results found";
+"loading_tracks" = "Loading audio...";
+
+// MARK: - Scene Categories
+"zen_meditation" = "Zen Meditation";
+"daily_relax" = "Daily Relax";
+"sleep_aid" = "Sleep Aid";
+"anxiety_relief" = "Anxiety Relief";
+"uncategorized" = "Other";
+
+// MARK: - Track Names
+"track_bamboo_forest" = "Bamboo Forest";
+"track_mountain_stream" = "Mountain Stream";
+"track_morning_dew" = "Morning Dew";
+"track_moonlight_lullaby" = "Moonlight Lullaby";
+"track_gentle_rain" = "Gentle Rain";
+"track_autumn_wind" = "Autumn Wind";
+"track_spring_blossom" = "Spring Blossom";
+"track_snow_silence" = "Snow Silence";
+
+// MARK: - Artist
+"artist_qingyu" = "QingYu Music";
+
+// MARK: - Player Controls
+"play" = "Play";
+"pause" = "Pause";
+"next_track" = "Next Track";
+"previous_track" = "Previous Track";
+"single_loop" = "Single Loop";
+"sequence_play" = "Sequence";
+"random_play" = "Random";
+
+// MARK: - Track Actions
+"add_to_favorites" = "Add to Favorites";
+"remove_from_favorites" = "Remove from Favorites";
+"cache_track" = "Cache Track";
+"remove_cache" = "Remove Cache";
+"share" = "Share";
+
+// MARK: - Profile / Settings
+"profile_title" = "Profile";
+"my_favorites" = "My Favorites";
+"settings" = "Settings";
+"about" = "About";
+
+// MARK: - Settings Items
+"background_playback" = "Background Playback";
+"background_playback_desc" = "Continue playing when app is in background";
+"lock_screen_control" = "Lock Screen Control";
+"lock_screen_control_desc" = "Control audio from lock screen";
+"default_playback_mode" = "Default Playback Mode";
+"default_playback_mode_desc" = "Choose your preferred playback mode";
+"auto_cache" = "Auto Cache";
+"auto_cache_desc" = "Automatically cache frequently used tracks";
+
+// MARK: - Cache Management
+"cache_management" = "Cache Management";
+"cache_size" = "Cache Size";
+"clear_cache" = "Clear Cache";
+"clear_cache_confirm" = "Are you sure you want to clear all cached audio?";
+"cache_cleared" = "Cache cleared";
+
+// MARK: - About Section
+"version" = "Version";
+"version_info" = "QingYu v1.0.0 (1)";
+"privacy_policy" = "Privacy Policy";
+"privacy_policy_desc" = "View our privacy policy";
+"user_agreement" = "User Agreement";
+"user_agreement_desc" = "View user terms and conditions";
+"rate_app" = "Rate App";
+"rate_app_desc" = "Rate QingYu on App Store";
+"share_app" = "Share App";
+"share_app_desc" = "Share QingYu with friends";
+"share_app_message" = "I found an amazing oriental healing app 'QingYu' and thought you'd like it!";
+
+// MARK: - Empty States
+"no_favorites_yet" = "No favorites yet";
+"no_cached_tracks" = "No cached tracks";
+"first_time_user" = "First Time Using QingYu";
+"first_time_message" = "Select a scene to begin your healing journey";
+
+// MARK: - Status Messages
+"loading" = "Loading...";
+"downloading" = "Downloading...";
+"downloading_progress" = "Downloading %d%%";
+"download_complete" = "Download Complete";
+"download_failed" = "Download Failed";
+"cache_complete" = "Cache Complete";
+"cache_removed" = "Cache Removed";
+
+// MARK: - Error Messages
+"error_network" = "Network connection error";
+"error_playback" = "Playback failed";
+"error_cache" = "Cache failed";
+"error_download" = "Download failed";
+"try_again" = "Try Again";
+
+// MARK: - Notifications
+"notification_new_track" = "New Track Available";
+"notification_download_complete" = "Download Complete";
+"notification_playback_error" = "Playback Error";
+
+// MARK: - Accessibility
+"accessibility_play_button" = "Play Button";
+"accessibility_pause_button" = "Pause Button";
+"accessibility_next_track" = "Next Track";
+"accessibility_previous_track" = "Previous Track";
+"accessibility_favorite_button" = "Favorite Button";
+"accessibility_cache_button" = "Cache Button";
+"accessibility_vinyl_record" = "Vinyl Record";
+"accessibility_progress_slider" = "Progress Slider";
+
+// MARK: - Time Formats
+"seconds_short" = "s";
+"minutes_short" = "m";
+"hours_short" = "h";
+"remaining_time" = "%@ remaining";
+"elapsed_time" = "%@ played";
+
+// MARK: - Quality Options
+"quality_standard" = "Standard Quality";
+"quality_high" = "High Quality";
+"quality_auto" = "Auto";
+"quality_wifi_only" = "High Quality on Wi-Fi Only";
+
+// MARK: - Scene Descriptions
+"zen_meditation_desc" = "Traditional instruments like Guqin and Bamboo Flute for meditation";
+"daily_relax_desc" = "Natural sounds with oriental instruments for daily relaxation";
+"sleep_aid_desc" = "Soft oriental audio to help you fall asleep";
+"anxiety_relief_desc" = "Calming audio to relieve stress and anxiety";
+
+// MARK: - Feature Descriptions
+"feature_vinyl_experience" = "Vinyl Experience";
+"feature_vinyl_desc" = "Authentic vinyl record interaction experience";
+"feature_seamless_loop" = "Seamless Loop";
+"feature_seamless_desc" = "Perfect 10-40 second audio loops";
+"feature_multi_language" = "Multi-Language";
+"feature_multi_language_desc" = "Support for Chinese, English, German, French";
+"feature_offline_cache" = "Offline Cache";
+"feature_offline_desc" = "Support offline audio download and playback";
+"feature_no_login" = "No Registration";
+"feature_no_login_desc" = "Instant access without registration or login";

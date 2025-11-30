@@ -1,0 +1,165 @@
+/*
+  Localizable.strings
+  QingYu
+
+  Created by QingYu Team on 2025-11-27.
+  Copyright © 2025 QingYu. All rights reserved.
+*/
+
+// MARK: - App General
+"app_name" = "轻语";
+"qingyu_user" = "轻语用户";
+"enjoy_healing_journey" = "享受东方疗愈之旅";
+
+// MARK: - Navigation
+"back" = "返回";
+"done" = "完成";
+"cancel" = "取消";
+"ok" = "确定";
+"save" = "保存";
+
+// MARK: - Home Screen
+"subtitle_healing_sounds" = "国风音频 · 碎片时间疗愈";
+"search_placeholder" = "搜索曲目、场景";
+"no_results" = "未找到相关曲目";
+"loading_tracks" = "正在加载音频...";
+
+// MARK: - Scene Categories
+"zen_meditation" = "禅意静心";
+"daily_relax" = "日常解压";
+"sleep_aid" = "睡前助眠";
+"anxiety_relief" = "缓解焦虑";
+"uncategorized" = "其他";
+
+// MARK: - Track Names
+"track_bamboo_forest" = "竹径清音";
+"track_mountain_stream" = "山涧流水";
+"track_morning_dew" = "晨露鸟鸣";
+"track_moonlight_lullaby" = "月光摇篮曲";
+"track_gentle_rain" = "细雨绵绵";
+"track_autumn_wind" = "秋风落叶";
+"track_spring_blossom" = "春暖花开";
+"track_snow_silence" = "雪夜静思";
+
+// MARK: - Artist
+"artist_qingyu" = "轻语音乐";
+
+// MARK: - Player Controls
+"play" = "播放";
+"pause" = "暂停";
+"next_track" = "下一首";
+"previous_track" = "上一首";
+"single_loop" = "单曲循环";
+"sequence_play" = "顺序播放";
+"random_play" = "随机播放";
+
+// MARK: - Track Actions
+"add_to_favorites" = "添加到收藏";
+"remove_from_favorites" = "从收藏中移除";
+"cache_track" = "缓存音频";
+"remove_cache" = "删除缓存";
+"sharing" = "分享";
+
+// MARK: - Profile / Settings
+"profile_title" = "个人中心";
+"my_favorites" = "我的收藏";
+"settings" = "设置";
+"about" = "关于";
+
+// MARK: - Settings Items
+"background_playback" = "后台播放";
+"background_playback_desc" = "退出应用后继续播放音频";
+"lock_screen_control" = "锁屏控制";
+"lock_screen_control_desc" = "在锁屏界面控制音频播放";
+"default_playback_mode" = "默认播放模式";
+"default_playback_mode_desc" = "选择默认的播放方式";
+"auto_cache" = "自动缓存";
+"auto_cache_desc" = "自动缓存常用音频到本地";
+
+// MARK: - Cache Management
+"cache_management" = "缓存管理";
+"cache_size" = "缓存大小";
+"clear_cache" = "清除缓存";
+"clear_cache_confirm" = "确定要清除所有缓存的音频吗？";
+"cache_cleared" = "缓存已清除";
+
+// MARK: - About Section
+"version" = "版本";
+"version_info" = "轻语 v1.0.0 (1)";
+"privacy_policy" = "隐私政策";
+"privacy_policy_desc" = "查看我们的隐私政策";
+"user_agreement" = "用户协议";
+"user_agreement_desc" = "查看用户使用协议";
+"rate_app" = "评价应用";
+"rate_app_desc" = "在App Store上评价轻语";
+"share_app" = "分享应用";
+"share_app_desc" = "与朋友分享轻语";
+"share_app_message" = "我发现了一个很棒的国风疗愈应用「轻语」，推荐给你！";
+
+// MARK: - Empty States
+"no_favorites_yet" = "还没有收藏的曲目";
+"no_cached_tracks" = "还没有缓存的音频";
+"first_time_user" = "初次使用轻语";
+"first_time_message" = "点击场景开始您的疗愈之旅";
+
+// MARK: - Status Messages
+"loading" = "加载中...";
+"downloading" = "下载中...";
+"downloading_progress" = "下载中 %d%%";
+"download_complete" = "下载完成";
+"download_failed" = "下载失败";
+"cache_complete" = "缓存完成";
+"cache_removed" = "缓存已删除";
+
+// MARK: - Error Messages
+"error_network" = "网络连接异常";
+"error_playback" = "播放失败";
+"error_cache" = "缓存失败";
+"error_download" = "下载失败";
+"try_again" = "重试";
+
+// MARK: - Notifications
+"notification_new_track" = "新增音频";
+"notification_download_complete" = "下载完成";
+"notification_playback_error" = "播放出错";
+
+// MARK: - Accessibility
+"accessibility_play_button" = "播放按钮";
+"accessibility_pause_button" = "暂停按钮";
+"accessibility_next_track" = "下一首";
+"accessibility_previous_track" = "上一首";
+"accessibility_favorite_button" = "收藏按钮";
+"accessibility_cache_button" = "缓存按钮";
+"accessibility_vinyl_record" = "黑胶唱片";
+"accessibility_progress_slider" = "进度滑块";
+
+// MARK: - Time Formats
+"seconds_short" = "秒";
+"minutes_short" = "分";
+"hours_short" = "时";
+"remaining_time" = "剩余 %@";
+"elapsed_time" = "已播放 %@";
+
+// MARK: - Quality Options
+"quality_standard" = "标准音质";
+"quality_high" = "高品质音质";
+"quality_auto" = "自动选择";
+"quality_wifi_only" = "仅在Wi-Fi下使用高品质";
+
+// MARK: - Scene Descriptions
+"zen_meditation_desc" = "古琴、竹笛等传统乐器，适合静心冥想";
+"daily_relax_desc" = "自然声音与国风乐器，适合日常放松";
+"sleep_aid_desc" = "轻柔的国风音频，帮助入眠";
+"anxiety_relief_desc" = "舒缓音频，缓解压力和焦虑";
+
+// MARK: - Feature Descriptions
+"feature_vinyl_experience" = "黑胶唱片质感";
+"feature_vinyl_desc" = "模拟真实黑胶唱片的交互体验";
+"feature_seamless_loop" = "无缝循环";
+"feature_seamless_desc" = "10-40秒音频完美循环播放";
+"feature_multi_language" = "多语言支持";
+"feature_multi_language_desc" = "支持中文、英文、德文、法文";
+"feature_offline_cache" = "离线缓存";
+"feature_offline_desc" = "支持音频离线下载和播放";
+"feature_no_login" = "无注册体验";
+"feature_no_login_desc" = "即开即用，无需注册登录";

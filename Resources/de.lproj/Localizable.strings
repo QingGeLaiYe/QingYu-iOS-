@@ -1,0 +1,165 @@
+/*
+  Localizable.strings
+  QingYu
+
+  Created by QingYu Team on 2025-11-27.
+  Copyright © 2025 QingYu. All rights reserved.
+*/
+
+// MARK: - App General
+"app_name" = "QingYu";
+"qingyu_user" = "QingYu Benutzer";
+"enjoy_healing_journey" = "Genießen Sie Ihre Heilungsreise";
+
+// MARK: - Navigation
+"back" = "Zurück";
+"done" = "Fertig";
+"cancel" = "Abbrechen";
+"ok" = "OK";
+"save" = "Speichern";
+
+// MARK: - Home Screen
+"subtitle_healing_sounds" = "Orientalische Klänge · Achtsame Momente";
+"search_placeholder" = "Tracks, Szenen suchen...";
+"no_results" = "Keine Ergebnisse gefunden";
+"loading_tracks" = "Audio wird geladen...";
+
+// MARK: - Scene Categories
+"zen_meditation" = "Zen Meditation";
+"daily_relax" = "Tägliche Entspannung";
+"sleep_aid" = "Schlafhilfe";
+"anxiety_relief" = "Angstbewältigung";
+"uncategorized" = "Andere";
+
+// MARK: - Track Names
+"track_bamboo_forest" = "Bambuswald";
+"track_mountain_stream" = "Gebirgsbach";
+"track_morning_dew" = "Morgentau";
+"track_moonlight_lullaby" = "Mondlichtschlaflied";
+"track_gentle_rain" = "Sanfter Regen";
+"track_autumn_wind" = "Herbstwind";
+"track_spring_blossom" = "Frühlingsblüte";
+"track_snow_silence" = "Schneestille";
+
+// MARK: - Artist
+"artist_qingyu" = "QingYu Musik";
+
+// MARK: - Player Controls
+"play" = "Abspielen";
+"pause" = "Pausieren";
+"next_track" = "Nächster Track";
+"previous_track" = "Vorheriger Track";
+"single_loop" = "Einzelne Schleife";
+"sequence_play" = "Reihenfolge";
+"random_play" = "Zufällig";
+
+// MARK: - Track Actions
+"add_to_favorites" = "Zu Favoriten hinzufügen";
+"remove_from_favorites" = "Aus Favoriten entfernen";
+"cache_track" = "Track zwischenspeichern";
+"remove_cache" = "Cache entfernen";
+"share" = "Teilen";
+
+// MARK: - Profile / Settings
+"profile_title" = "Profil";
+"my_favorites" = "Meine Favoriten";
+"settings" = "Einstellungen";
+"about" = "Über";
+
+// MARK: - Settings Items
+"background_playback" = "Hintergrund-Wiedergabe";
+"background_playback_desc" = "Wiedergabe fortsetzen, wenn App im Hintergrund";
+"lock_screen_control" = "Sperrbildschirm-Steuerung";
+"lock_screen_control_desc" = "Audio vom Sperrbildschirm steuern";
+"default_playback_mode" = "Standard-Wiedergabemodus";
+"default_playback_mode_desc" = "Bevorzugten Wiedergabemodus wählen";
+"auto_cache" = "Auto-Cache";
+"auto_cache_desc" = "Häufig genutzte Tracks automatisch zwischenspeichern";
+
+// MARK: - Cache Management
+"cache_management" = "Cache-Verwaltung";
+"cache_size" = "Cache-Größe";
+"clear_cache" = "Cache leeren";
+"clear_cache_confirm" = "Sind Sie sicher, dass Sie alle zwischengespeicherten Audiodateien löschen möchten?";
+"cache_cleared" = "Cache geleert";
+
+// MARK: - About Section
+"version" = "Version";
+"version_info" = "QingYu v1.0.0 (1)";
+"privacy_policy" = "Datenschutzrichtlinie";
+"privacy_policy_desc" = "Unsere Datenschutzrichtlinie anzeigen";
+"user_agreement" = "Benutzer-Vereinbarung";
+"user_agreement_desc" = "Benutzungsbedingungen anzeigen";
+"rate_app" = "App bewerten";
+"rate_app_desc" = "QingYu im App Store bewerten";
+"share_app" = "App teilen";
+"share_app_desc" = "QingYu mit Freunden teilen";
+"share_app_message" = "Ich habe eine fantastische orientalische Heilungs-App 'QingYu' gefunden und dachte, sie könnte Ihnen gefallen!";
+
+// MARK: - Empty States
+"no_favorites_yet" = "Noch keine Favoriten";
+"no_cached_tracks" = "Keine zwischengespeicherten Tracks";
+"first_time_user" = "Erste Nutzung von QingYu";
+"first_time_message" = "Wählen Sie eine Szene, um Ihre Heilungsreise zu beginnen";
+
+// MARK: - Status Messages
+"loading" = "Wird geladen...";
+"downloading" = "Herunterladen...";
+"downloading_progress" = "Herunterladen %d%%";
+"download_complete" = "Download abgeschlossen";
+"download_failed" = "Download fehlgeschlagen";
+"cache_complete" = "Cache abgeschlossen";
+"cache_removed" = "Cache entfernt";
+
+// MARK: - Error Messages
+"error_network" = "Netzwerkverbindungsfehler";
+"error_playback" = "Wiedergabe fehlgeschlagen";
+"error_cache" = "Cache fehlgeschlagen";
+"error_download" = "Download fehlgeschlagen";
+"try_again" = "Erneut versuchen";
+
+// MARK: - Notifications
+"notification_new_track" = "Neuer Track verfügbar";
+"notification_download_complete" = "Download abgeschlossen";
+"notification_playback_error" = "Wiedergabefehler";
+
+// MARK: - Accessibility
+"accessibility_play_button" = "Wiedergabe-Button";
+"accessibility_pause_button" = "Pause-Button";
+"accessibility_next_track" = "Nächster Track";
+"accessibility_previous_track" = "Vorheriger Track";
+"accessibility_favorite_button" = "Favoriten-Button";
+"accessibility_cache_button" = "Cache-Button";
+"accessibility_vinyl_record" = "Schallplatte";
+"accessibility_progress_slider" = "Fortschritts-Schieberegler";
+
+// MARK: - Time Formats
+"seconds_short" = "s";
+"minutes_short" = "Min";
+"hours_short" = "Std";
+"remaining_time" = "%@ verbleibend";
+"elapsed_time" = "%@ abgespielt";
+
+// MARK: - Quality Options
+"quality_standard" = "Standardqualität";
+"quality_high" = "Hohe Qualität";
+"quality_auto" = "Auto";
+"quality_wifi_only" = "Hohe Qualität nur über WLAN";
+
+// MARK: - Scene Descriptions
+"zen_meditation_desc" = "Traditionelle Instrumente wie Guqin und Bambusflöte für Meditation";
+"daily_relax_desc" = "Natürliche Klänge mit orientalischen Instrumenten für tägliche Entspannung";
+"sleep_aid_desc" = "Sanfte orientalische Klänge zum Einschlafen";
+"anxiety_relief_desc" = "Beruhigende Klänge zur Stress- und Angstbewältigung";
+
+// MARK: - Feature Descriptions
+"feature_vinyl_experience" = "Schallplatten-Erlebnis";
+"feature_vinyl_desc" = "Authentische Schallplatten-Interaktionserfahrung";
+"feature_seamless_loop" = "Nahtlose Schleife";
+"feature_seamless_desc" = "Perfekte 10-40 Sekunden Audio-Schleifen";
+"feature_multi_language" = "Mehrsprachig";
+"feature_multi_language_desc" = "Unterstützung für Chinesisch, Englisch, Deutsch, Französisch";
+"feature_offline_cache" = "Offline-Cache";
+"feature_offline_desc" = "Unterstützung für Offline-Audio-Download und Wiedergabe";
+"feature_no_login" = "Keine Registrierung";
+"feature_no_login_desc" = "Sofortiger Zugriff ohne Registrierung oder Login";
