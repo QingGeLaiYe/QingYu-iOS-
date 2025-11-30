@@ -24,7 +24,7 @@ jobs:
     - name: Create demo files
       run: |
         mkdir -p demo
-        cat > demo/index.html << 'HTML'
+        cat > demo/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -41,10 +41,13 @@ jobs:
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         .phone {
-            width: 375px;
-            height: 812px;
+            width: 100%;
+            max-width: 375px;
+            height: 100%;
+            max-height: 812px;
             background: white;
             border-radius: 40px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -93,6 +96,7 @@ jobs:
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         .scene-btn.active {
             background: #007AFF;
@@ -143,12 +147,14 @@ jobs:
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 375px;
+            width: 100%;
+            max-width: 375px;
             background: white;
             border-top: 1px solid #e0e0e0;
             padding: 20px;
             text-align: center;
             display: none;
+            z-index: 1000;
         }
         .player.active {
             display: block;
@@ -210,6 +216,9 @@ jobs:
                 border-radius: 0;
                 box-shadow: none;
             }
+            body {
+                padding: 0;
+            }
         }
     </style>
 </head>
@@ -225,13 +234,13 @@ jobs:
         <input type="text" class="search" placeholder="🔍 搜索曲目或艺术家">
 
         <div class="scenes">
-            <button class="scene-btn active">🧘 禅意静心</button>
-            <button class="scene-btn">☀️ 日常解压</button>
-            <button class="scene-btn">🌙 睡前助眠</button>
-            <button class="scene-btn">💗 缓解焦虑</button>
+            <button class="scene-btn active" onclick="switchScene(this)">🧘 禅意静心</button>
+            <button class="scene-btn" onclick="switchScene(this)">☀️ 日常解压</button>
+            <button class="scene-btn" onclick="switchScene(this)">🌙 睡前助眠</button>
+            <button class="scene-btn" onclick="switchScene(this)">💗 缓解焦虑</button>
         </div>
 
-        <div class="track" onclick="showPlayer()">
+        <div class="track" onclick="showPlayer('竹林清风')">
             <div class="track-cover">🎵</div>
             <div class="track-info">
                 <div class="track-title">竹林清风</div>
@@ -240,7 +249,7 @@ jobs:
             <div class="track-duration">0:30</div>
         </div>
 
-        <div class="track">
+        <div class="track" onclick="showPlayer('山涧溪流')">
             <div class="track-cover">🎵</div>
             <div class="track-info">
                 <div class="track-title">山涧溪流</div>
@@ -249,7 +258,7 @@ jobs:
             <div class="track-duration">0:25</div>
         </div>
 
-        <div class="track">
+        <div class="track" onclick="showPlayer('古琴禅音')">
             <div class="track-cover">🎵</div>
             <div class="track-info">
                 <div class="track-title">古琴禅音</div>
@@ -258,7 +267,7 @@ jobs:
             <div class="track-duration">0:35</div>
         </div>
 
-        <div class="track">
+        <div class="track" onclick="showPlayer('晨露微光')">
             <div class="track-cover">🎵</div>
             <div class="track-info">
                 <div class="track-title">晨露微光</div>
@@ -267,41 +276,88 @@ jobs:
             <div class="track-duration">0:20</div>
         </div>
 
+        <div class="track" onclick="showPlayer('月光摇篮曲')">
+            <div class="track-cover">🎵</div>
+            <div class="track-info">
+                <div class="track-title">月光摇篮曲</div>
+                <div class="track-artist">轻语</div>
+            </div>
+            <div class="track-duration">0:40</div>
+        </div>
+
         <div class="player" id="player">
             <div class="vinyl"></div>
-            <div style="font-weight: 500; margin-bottom: 16px;">竹林清风</div>
+            <div style="font-weight: 500; margin-bottom: 16px;" id="nowPlayingTitle">竹林清风</div>
             <div style="font-size: 14px; color: #8e8e93; margin-bottom: 20px;">轻语</div>
             <div class="controls">
-                <button class="control-btn">⏮️</button>
-                <button class="control-btn">⏸️</button>
-                <button class="control-btn">⏭️</button>
+                <button class="control-btn" onclick="previousTrack()">⏮️</button>
+                <button class="control-btn" onclick="togglePlay()" id="playBtn">▶️</button>
+                <button class="control-btn" onclick="nextTrack()">⏭️</button>
             </div>
         </div>
     </div>
 
     <script>
-        function showPlayer() {
+        let isPlaying = false;
+        let currentTrack = 0;
+        const tracks = ['竹林清风', '山涧溪流', '古琴禅音', '晨露微光', '月光摇篮曲'];
+
+        function showPlayer(trackName) {
             document.getElementById('player').classList.add('active');
+            document.getElementById('nowPlayingTitle').textContent = trackName;
+            currentTrack = tracks.indexOf(trackName);
+
             if (navigator.vibrate) {
                 navigator.vibrate(50);
             }
         }
 
-        document.querySelectorAll('.scene-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                if (navigator.vibrate) {
-                    navigator.vibrate(20);
-                }
-            });
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('playBtn');
+            const vinyl = document.querySelector('.vinyl');
+
+            btn.textContent = isPlaying ? '⏸️' : '▶️';
+            vinyl.style.animationPlayState = isPlaying ? 'running' : 'paused';
+
+            if (navigator.vibrate) {
+                navigator.vibrate(30);
+            }
+        }
+
+        function previousTrack() {
+            currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+            showPlayer(tracks[currentTrack]);
+        }
+
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % tracks.length;
+            showPlayer(tracks[currentTrack]);
+        }
+
+        function switchScene(btn) {
+            document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (navigator.vibrate) {
+                navigator.vibrate(20);
+            }
+        }
+
+        // 页面可见性检测
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                isPlaying = false;
+                document.getElementById('playBtn').textContent = '▶️';
+                document.querySelector('.vinyl').style.animationPlayState = 'paused';
+            }
         });
     </script>
 </body>
 </html>
-HTML
+EOF
 
-    - name: Upload to GitHub Pages
+    - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: demo
